@@ -3,9 +3,9 @@
 
 html, body {
   font-family: 'Poppins', sans-serif;
-  height: 1000vh;
   color: #46444c;
   position: relative;
+  transition: 10s ease-in;
 }
 
 .header--background .pattern--design {
@@ -16,4 +16,15 @@ html, body {
   background-image: url('https://cdn.discordapp.com/attachments/993488910535630888/1009940917936996383/Screenshot_from_2022-08-18_23-44-20.png');
   height: 100vh;
   background-size: 150rem;
+}
+
+.reveal{
+  position: relative;
+  transform: translateY(150px);
+  opacity: 0;
+  transition: 2s all ease;
+}
+.reveal.active{
+  transform: translateY(0);
+  opacity: 1;
 }
