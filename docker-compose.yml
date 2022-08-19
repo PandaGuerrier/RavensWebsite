@@ -1,6 +1,7 @@
 version: '3'
 services: 
-  database: 
+  postgres-db: 
+    container_name: postgres-db-new
     image: 'postgres:latest'
     ports:
       - '5432:5432'
@@ -8,5 +9,10 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=postgres
-      
+    volumes:
+      - postgres-db-data:/var/lib/postgresql/data
+
+volumes:
+    postgres-db-data:
+        name: postgres-db-data         
  

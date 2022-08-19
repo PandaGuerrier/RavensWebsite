@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>RavenS</title>
   @entryPointStyles('app')
-  @entryPointScripts('app')
+  @entryPointScripts('register')
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 
@@ -37,34 +37,11 @@
             <input type="hidden" name="remember" value="true">
             <div class="rounded-md shadow-sm -space-y-px">
                 <!-- Condition si une erreur apparaît avec le username -->
-                @if(flashMessages.has('errors.username'))
-                @!component('components/actionbar', {
-                    text: flashMessages.get('errors.password'),
-                    type: 'error'
-                })
+                @if(flashMessages.has('errors.username') || flashMessages.has('errors.password') || flashMessages.has('errors.password_confirmation') || flashMessages.has('errors.email'))
+                        
+                      implement show errors
+
                     @endif
-               <!-- Condition si une erreur apparaît avec le password -->
-                   @if(flashMessages.has('errors.password'))
-                        @!component('components/actionbar', {
-                            text: flashMessages.get('errors.password'),
-                            type: 'error'
-                        })
-                    @endif
-                    <!-- Condition si une erreur apparaît avec le password confirmation -->
-                @if(flashMessages.has('errors.password_confirmation'))
-                    @!component('components/actionbar', {
-                        text: flashMessages.get('errors.password_confirmation'),
-                        type: 'error'
-                    })
-                    @endif
-                    <!-- Condition si une erreur apparaît avec le email -->
-                @if(flashMessages.has('errors.email'))
-                    @!component('components/actionbar', {
-                        text: flashMessages.get('errors.email'),
-                        type: 'error'
-                    })
-              
-              @endif
                          
                 <div>
                     <label for="username" class="sr-only">Email</label>
@@ -100,5 +77,16 @@
       </div>
       
   </main>
-</body>
+
+  <script type="text/javascript">
+    function showError(message) {
+      let d = [];
+      d.push(message);
+      @!component('components/actionbar', {
+        text: d,
+        type: 'error'
+      })
+    }
+  </script>
+  </body>
 </html>

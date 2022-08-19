@@ -12,6 +12,7 @@ export default class UsersSchema extends BaseSchema {
       table.string('username', 255).notNullable().unique()
       table.string('role', 255).notNullable().defaultTo('member')
 
+
       /**
        * Uses timestampz for PostgreSQL and DATETIME2 for MSSQL
        */
@@ -22,6 +23,6 @@ export default class UsersSchema extends BaseSchema {
   }
 
   public async down() {
-    this.schema.dropTable(this.tableName)
+ //   this.schema.dropTable(this.tableName)
   }
 }

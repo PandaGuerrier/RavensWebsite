@@ -12,6 +12,7 @@ export default class AuthController {
     })
     const data = await request.validate({
       schema: validations,
+      
       messages: {
         required: 'Le champs {{ field }} est requis pour créer un compte',
         'email.email': 'Veuillez entrer une adresse email valide',
