@@ -3,12 +3,16 @@ import User from 'App/Models/User'
 import { rules, schema } from '@ioc:Adonis/Core/Validator'
 
 export default class AuthController {
+  public async registerView({ view }: HttpContextContract) {
+    return view.render('auth/register')
+  }
+
   public async register({ request, response, auth }: HttpContextContract) {
 
     const validations = await schema.create({
       email: schema.string({}, [rules.email(), rules.unique({ table: 'users', column: 'email' })]),
       password: schema.string({}, [rules.confirmed()]),
-      username: schema.string({}, [rules.unique({ table: 'users', column: 'username' })]),
+      username: schema.string({}, [rules.unique({ table: 'users', column: 'username' }), rules.maxLength(16)]),
     })
     const data = await request.validate({
       schema: validations,
@@ -19,29 +23,35 @@ export default class AuthController {
         'password.confirmed': 'Les mots de passe ne correspondent pas',
         'password_confirmation': 'Les mots de passe ne correspondent pas',
         'password': 'Le mot de passe doit contenir au moins 6 caractères',
-        'username.unique': 'Ce nom d\'utilisateur est déjà utilisé',   
+        'username.unique': 'Ce nom d\'utilisateur est déjà utilisé',
+        'username.maxLength': 'Le nom d\'utilisateur ne doit pas dépasser 16 caractères',
         'success': 'Votre compte a été créé avec succès',
       }
     })
+// creer un validator
+    const user = await User.create(data)
+    await auth.login(user)
 
-    await User.create(data)
-    await auth.use('web').attempt(request.input('email'), request.input('password'))
-
-    return response.redirect('/')
+    return response.redirect('back')
   }
 
+  public async loginView({ view }: HttpContextContract) {
+    return view.render('auth/login')
+  }
   //   login function
-  public async login({ request, response, auth }: HttpContextContract) {
-    const password = await request.input('password')
-    const email = await request.input('email')
+  public async login({ request, response, auth, session }: HttpContextContract) {
+
+    const email = request.input('email')
+    const password = request.input('password')
 
     try {
-      const token = await auth.use('web').attempt(email, password)
-      return token.toJSON()
-    } catch {
-      return response
-        .status(400)
-        .send({ error: { message: 'Utilisateur inconnu !' } })
+      await auth.use('web').attempt(email, password)
+
+      return response.redirect('/')
+    } catch (error) {
+      session.flash('notification', 'Email ou mot de passe incorrect')
+
+      return response.redirect('back')
     }
   }
 

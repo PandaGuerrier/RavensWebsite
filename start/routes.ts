@@ -19,36 +19,23 @@
 */
 import HealthCheck from '@ioc:Adonis/Core/HealthCheck'
 import Route from '@ioc:Adonis/Core/Route'
-import './routes/users.ts'
+import './routes/auth'
 
 Route.get('/', async ({ view }) => {
     return view.render('welcome')
 })
 
-Route.group(() => {
-  Route.get('/auth/register', async ({ view }) => {
-      return view.render('auth/register')
-  })
-  Route.post('/auth/register', 'Users/AuthController.register').as('register')
-
-  Route.post('login', 'Users/AuthController.login').as('login')
-
-}).middleware('guest')
-
 Route.get('islogin', async ({ auth }) => {
-  return auth.isLoggedIn
+  return auth
 })
 
 Route.group(() => {
 
-  Route.get('dashboard', async ({ auth, view }) => {
-    return view.render('dashboard', {
-      username: auth.user?.username,
-    })
-  })
-  Route.get('/auth/logout', 'Users/AuthController.logout')
+  Route.get('dashboard', async ({ view }) => {
+    return view.render('dashboard')
+  }).as('dashboard')
 
-}).middleware(['auth'])
+}).middleware(['auth', 'admin']).prefix('/admin/')
 
 // check db connection
 Route.get('health', async ({ response }) => {

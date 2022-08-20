@@ -38,3 +38,4 @@ window.addEventListener("scroll", reveal);
 reveal();
 
 require('./actionbar');
+require('./navbar');
