@@ -22,14 +22,33 @@ import Route from '@ioc:Adonis/Core/Route'
 import './routes/users.ts'
 
 Route.get('/', async ({ view }) => {
-  return view.render('welcome')
+    return view.render('welcome')
 })
 
-Route.get('/auth/register', async ({ view }) => {
-  return view.render('auth/register')
+Route.group(() => {
+  Route.get('/auth/register', async ({ view }) => {
+      return view.render('auth/register')
+  })
+  Route.post('/auth/register', 'Users/AuthController.register').as('register')
+
+  Route.post('login', 'Users/AuthController.login').as('login')
+
+}).middleware('guest')
+
+Route.get('islogin', async ({ auth }) => {
+  return auth.isLoggedIn
 })
 
+Route.group(() => {
 
+  Route.get('dashboard', async ({ auth, view }) => {
+    return view.render('dashboard', {
+      username: auth.user?.username,
+    })
+  })
+  Route.get('/auth/logout', 'Users/AuthController.logout')
+
+}).middleware(['auth'])
 
 // check db connection
 Route.get('health', async ({ response }) => {

@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>RavenS</title>
   @entryPointStyles('app')
-  @entryPointScripts('register')
+  @entryPointScripts('app')
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 
@@ -33,14 +33,16 @@
 
                   <!-- Début du form -->
           
-          <form class="mt-8 space-y-6" action="{{ route('/api/v1/users/register') }}" method="POST">
-            <input type="hidden" name="remember" value="true">
+                  <form class="mt-8 space-y-6" action="{{ route('/auth/register') }}" method="POST">
+
+         <input type="hidden" name="remember" value="true">
             <div class="rounded-md shadow-sm -space-y-px">
                 <!-- Condition si une erreur apparaît avec le username -->
                 @if(flashMessages.has('errors.username') || flashMessages.has('errors.password') || flashMessages.has('errors.password_confirmation') || flashMessages.has('errors.email'))
-                        
-                      implement show errors
-
+                     @!component('components.actionbar', {
+                        type: 'error',
+                        text: flashMessages.get('errors.username') || flashMessages.get('errors.password') || flashMessages.get('errors.password_confirmation') || flashMessages.get('errors.email'),
+                      })
                     @endif
                          
                 <div>

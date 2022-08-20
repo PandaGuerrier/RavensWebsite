@@ -3,7 +3,7 @@ import User from 'App/Models/User'
 import { rules, schema } from '@ioc:Adonis/Core/Validator'
 
 export default class AuthController {
-  public async register({ request, response }: HttpContextContract) {
+  public async register({ request, response, auth }: HttpContextContract) {
     // validate email
     const validations = await schema.create({
       email: schema.string({}, [rules.email(), rules.unique({ table: 'users', column: 'email' })]),
@@ -12,17 +12,22 @@ export default class AuthController {
     })
     const data = await request.validate({
       schema: validations,
-      
       messages: {
         required: 'Le champs {{ field }} est requis pour créer un compte',
         'email.email': 'Veuillez entrer une adresse email valide',
         'email.unique': 'Cette adresse email est déjà utilisée',
         'password.confirmed': 'Les mots de passe ne correspondent pas',
-        'username.unique': 'Ce nom d\'utilisateur est déjà utilisé',      
+        'password_confirmation': 'Les mots de passe ne correspondent pas',
+        'password': 'Le mot de passe doit contenir au moins 6 caractères',
+        'username.unique': 'Ce nom d\'utilisateur est déjà utilisé',   
+        'success': 'Votre compte a été créé avec succès',
       }
     })
-    const user = await User.create(data)
-    return response.created(user)
+
+    await User.create(data)
+    await auth.use('web').attempt(request.input('email'), request.input('password'))
+
+    return response.redirect('/')
   }
 
   //   login function
@@ -43,6 +48,6 @@ export default class AuthController {
   //   logout function
   public async logout({ auth, response }: HttpContextContract) {
     await auth.logout()
-    return response.status(200)
+    return response.redirect('/')
   }
 }
