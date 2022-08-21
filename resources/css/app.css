@@ -1,6 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
 @import './tailwind.css';
-
+@font-face {
+  font-family: 'bebas';
+  src: url('../policies/BebasNeue-Regular.ttf');
+} 
 html, body {
   font-family: 'Poppins', sans-serif;
   color: #46444c;
@@ -29,6 +32,7 @@ html, body {
   opacity: 1;
 }
 
-.maxheight {
-  height: 50%;
+.logoletter { 
+  letter-spacing: 70px;
+  font-family: 'bebas';
 }
