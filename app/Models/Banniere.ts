@@ -3,13 +3,19 @@ import { BaseModel, column } from '@ioc:Adonis/Lucid/Orm'
 
 export default class Banniere extends BaseModel {
   @column({ isPrimary: true })
-  public id: number
+  public id: string
 
-  @column.file({
-    path: 'assets/images/banniere/:filename',
-    relativeTo: 'public',
-    gc: true,
-  })
+  @column()
+  public title: string
+
+  @column()
+  public description: string
+
+  @column()
+  public file: string
+
+  @column()
+  public prix: number
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
