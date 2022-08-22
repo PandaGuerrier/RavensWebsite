@@ -9,10 +9,7 @@
   </head>
   <body>
     <main class="h-[200vh]">
-      @!component('components.navbar', {
-          isAuthenticated: isAuthenticated,
-          user: user
-      })
+      @!component('components.navbar')
 
       <!--
         Première partie :
@@ -43,8 +40,6 @@
         <div class="relative w-full h-96 bg-slate-700 text-white reveal">
             test
         </div>
-
-
     </main>
   </body>
 </html>
