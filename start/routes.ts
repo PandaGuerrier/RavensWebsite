@@ -25,15 +25,17 @@ Route.get('/', async ({ view }) => {
     return view.render('home')
 })
 
-Route.get('islogin', async ({ auth }) => {
-  return auth
-})
-
 Route.group(() => {
 
   Route.get('dashboard', async ({ view }) => {
-    return view.render('dashboard')
+    return view.render('admin/dashboard')
   }).as('dashboard')
+
+  Route.get('post', async ({ view }) => {
+    return view.render('admin/post')
+  }).as('post')
+
+  Route.post('post', 'Posts/PostsController.post')
 
 }).middleware(['auth', 'admin']).prefix('/admin/')
 

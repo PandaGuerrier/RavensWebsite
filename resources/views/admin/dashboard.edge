@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RavenS</title>
+  <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+  @entryPointStyles('app')
+  @entryPointScripts('app')
+</head>
+<body>
+  <main class="h-[200vh]">
+    
+      <div> 
+        <h1> Hello, {{ auth.user.username }} </h1>
+        <div id="editor">
+          <p>Hello World!</p>
+          <p>Some initial <strong>bold</strong> text</p>
+          <p><br></p>
+        </div>
+      </div>
+
+  </main>
+</body>
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+<script>
+  let quill = new Quill('#editor', {
+    theme: 'snow'
+  });
+</script>
+</html>
