@@ -18,6 +18,7 @@ export default class PostsController {
                 'success': 'Votre post a été créé avec succès',
             }
         })
+        console.log(data)
 
         await Posts.create(data)
 

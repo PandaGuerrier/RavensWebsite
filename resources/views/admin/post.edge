@@ -14,12 +14,12 @@
 <body>
   <main class="h-[100vh]">
     <div class="absolute z-10 inset-0 bg-bottom bg-no-repeat header--background ">
-		<div class="absolute inset-0 bg-grid-slate-900/[0.04] bg-[bottom_1px_center] pattern--design"></div>
+	    	<div class="absolute inset-0 bg-grid-slate-900/[0.04] bg-[bottom_1px_center] pattern--design"></div>
 	</div>
                       <!-- Header -->
 
     <div class="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 z-30">
-        <div class="max-w-md w-full space-y-8 z-30 reveal">
+        <div class="space-y-8 z-30 reveal">
           <div>
             <svg class="mx-auto h-12 w-auto" width="116" height="49" viewBox="0 0 116 49" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M33.4891 7.37753L50.6743 25.6562L73.3675 0L116 49L73.3675 13.3236V35.6707L56.623 28.8494L41.9164 41.182L50.6743 28.8494L33.4891 16.4067L26.7692 27.9685L24.566 26.5371L20.8205 35.4562L19.1681 27.9685L0 39.5303L14.1007 25.6562H20.2697L33.4891 7.37753Z" fill="#373D5B"/>
@@ -30,8 +30,6 @@
                   <!-- Début du form -->
           
      <form class="mt-8 space-y-6" action="{{ route('post') }}" method="POST" id="theform">
-
-         <input type="hidden" name="remember" value="true">
             <div class="rounded-md shadow-sm -space-y-px">       
               @if(flashMessages.has('notification'))
               @!component('components/actionbar', {
@@ -45,17 +43,11 @@
                 <input id="title" name="title" type="text" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-slate-700 focus:border-slate-700 focus:z-10 sm:text-sm" placeholder="Titre">
               </div>
               <input id="content" name="content" type="text" required class="hidden" placeholder="Titre">
-              <div id="editor"></div>
+              <div id="editor" class="bg-white"></div>
             </div>
       
             <div>
               <button id="register-button" type="submit" class="duration-200 group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-slate-700 hover:bg-slate-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-700">
-                <span class="absolute left-0 inset-y-0 flex items-center pl-3">
-                  <!-- Heroicon name: solid/lock-closed -->
-                  <svg class="h-5 w-5 text-slate-500 group-hover:text-slate-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
-                  </svg>
-                </span>
                 Création
               </button>
             </div>
@@ -67,6 +59,22 @@
 <!-- Initialize Quill editor -->
         <script>
           var quill = new Quill('#editor', {
+            modules: {
+              toolbar: [
+                ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+                ['blockquote', 'code-block'],
+
+                [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
+
+                [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
+                [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+
+                [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+                [{ 'align': [] }],
+              ]
+          },
+          placeholder: 'Compose an epic...',
             theme: 'snow'
           });
 
