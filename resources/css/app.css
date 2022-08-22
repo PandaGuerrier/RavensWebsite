@@ -9,6 +9,7 @@ html, body {
   color: #46444c;
   position: relative;
   transition: 10s ease-in;
+  scroll-behavior: smooth;
 }
 
 .header--background .pattern--design {
