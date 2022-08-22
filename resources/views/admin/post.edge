@@ -29,7 +29,7 @@
 
                   <!-- Début du form -->
           
-     <form class="mt-8 space-y-6" action="{{ route('post') }}" method="POST">
+     <form class="mt-8 space-y-6" action="{{ route('post') }}" method="POST" id="theform">
 
          <input type="hidden" name="remember" value="true">
             <div class="rounded-md shadow-sm -space-y-px">       
@@ -44,11 +44,8 @@
                 <label for="title" class="sr-only">Titre</label>
                 <input id="title" name="title" type="text" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-slate-700 focus:border-slate-700 focus:z-10 sm:text-sm" placeholder="Titre">
               </div>
-              <div id="editor">
-                <p>Hello World!</p>
-                <p>Some initial <strong>bold</strong> text</p>
-                <p><br></p>
-              </div>
+              <input id="content" name="content" type="text" required class="hidden" placeholder="Titre">
+              <div id="editor"></div>
             </div>
       
             <div>
@@ -71,6 +68,12 @@
         <script>
           var quill = new Quill('#editor', {
             theme: 'snow'
+          });
+
+          var hiddenArea = document.querySelector('#content');
+          quill.on('text-change', function(delta, oldDelta, source) {
+            hiddenArea.value = quill.root.innerHTML;
+            console.log(hiddenArea.value);
           });
         </script>
   </main>

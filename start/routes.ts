@@ -26,18 +26,19 @@ Route.get('/', async ({ view }) => {
 })
 
 Route.group(() => {
-
   Route.get('dashboard', async ({ view }) => {
     return view.render('admin/dashboard')
   }).as('dashboard')
 
   Route.get('post', async ({ view }) => {
     return view.render('admin/post')
-  }).as('post')
+  })
 
-  Route.post('post', 'Posts/PostsController.post')
+  Route.post('post', 'PostsController.post').as('post')
 
 }).middleware(['auth', 'admin']).prefix('/admin/')
+
+Route.get('/posts/:id', 'PostsController.get').as('posts')
 
 // check db connection
 Route.get('health', async ({ response }) => {
