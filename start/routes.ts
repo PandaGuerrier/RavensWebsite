@@ -38,7 +38,7 @@ Route.group(() => {
 
 }).middleware(['auth', 'admin']).prefix('/admin/')
 
-Route.get('/posts/:id', 'PostsController.get').as('posts')
+Route.get('/posts/:id', 'Posts/PostsController.get').as('posts')
 
 // check db connection
 Route.get('health', async ({ response }) => {
