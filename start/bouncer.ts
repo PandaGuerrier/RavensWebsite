@@ -32,7 +32,35 @@ import User from 'App/Models/User'
 |****************************************************************
 */
 export const { actions } = Bouncer
-  .define('viewPost', (user: User, post: Post) => {
+  .define('post:view', (user: User, post: Post) => {
+    if(post.published) {
+      return true
+    }
+
+    if(!user) {
+      return false
+    }
+
+    if(user.role === "admin") {
+      return true
+    }
+
+    return post.userUUID === user.id
+  }, {
+    allowGuest: true
+  })
+  .define('post:edit', (user: User, post: Post) => {
+    if(user.role === "admin") {
+      return true
+    }
+
+    return post.userUUID === user.id
+  })
+  .define('post:delete', (user: User, post: Post) => {
+    if(user.role === "admin") {
+      return true
+    }
+    
     return post.userUUID === user.id
   })
 

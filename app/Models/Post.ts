@@ -14,6 +14,9 @@ export default class Post extends BaseModel {
   @column()
   public userUUID: string
 
+  @column()
+  public published: boolean
+
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
 

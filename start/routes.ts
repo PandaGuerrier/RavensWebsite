@@ -34,9 +34,15 @@ Route.group(() => {
     return view.render('admin/post')
   })
 
-  Route.post('post', 'PostsController.post').as('post')
+  Route.post('post', 'Posts/PostsController.post').as('post')
 
 }).middleware(['auth', 'admin']).prefix('/admin/')
+
+Route.group(() => {
+  Route.get('edit', 'Posts/PostsController.edit').as('posts.edit')
+  Route.get('destroy', 'Posts/PostsController.edit').as('posts.destroy')
+
+}).prefix('/user/posts/').middleware(['auth', 'post'])
 
 Route.get('/posts/:id', 'Posts/PostsController.get').as('posts')
 

@@ -4,7 +4,7 @@ import { rules, schema } from '@ioc:Adonis/Core/Validator'
 
 export default class PostsController {
 
-    public async post({ request, response }: HttpContextContract) {
+    public async post({ request, response, auth }: HttpContextContract) {
        
         const validations = await schema.create({
             title: schema.string({}, [rules.required(), rules.maxLength(50), rules.unique({ table: 'posts', column: 'title' })]),
@@ -20,9 +20,11 @@ export default class PostsController {
                 'success': 'Votre post a été créé avec succès',
             }
         })
-        console.log(data)
 
-        await Posts.create(data)
+        await Posts.create({
+            ...data,
+            userUUID: auth.user?.id
+        })
 
         return response.redirect('back')
     }
