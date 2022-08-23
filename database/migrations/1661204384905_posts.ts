@@ -8,6 +8,8 @@ export default class extends BaseSchema {
       table.increments('id')
       table.string('title').notNullable()
       table.string('content').notNullable()
+      table.string('userUUID').notNullable()
+
 
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL

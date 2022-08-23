@@ -5,24 +5,20 @@ export default class UsersSchema extends BaseSchema {
 
   public async up() {
     this.schema.createTable(this.tableName, (table) => {
-      table.increments('id').primary()
+      table.string('id').primary()
       table.string('email', 255).notNullable().unique()
       table.string('password', 180).notNullable()
       table.string('remember_me_token').nullable()
       table.string('username', 255).notNullable().unique()
       table.string('role', 255).notNullable().defaultTo('member')
+      table.string('rolee', 255).notNullable().defaultTo('member')
 
-
-      /**
-       * Uses timestampz for PostgreSQL and DATETIME2 for MSSQL
-       */
       table.timestamp('created_at', { useTz: true }).notNullable()
       table.timestamp('updated_at', { useTz: true }).notNullable()
-      console.log(table)
     })
   }
 
   public async down() {
- //   this.schema.dropTable(this.tableName)
+   this.schema.dropTable(this.tableName)
   }
 }
