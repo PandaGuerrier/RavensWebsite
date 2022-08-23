@@ -4,10 +4,10 @@ import { rules, schema } from '@ioc:Adonis/Core/Validator'
 
 export default class PostsController {
 
-    public async post({ request }: HttpContextContract) {
+    public async post({ request, response }: HttpContextContract) {
        
         const validations = await schema.create({
-            title: schema.string({}, [rules.required(), rules.maxLength(50)]),
+            title: schema.string({}, [rules.required(), rules.maxLength(50), rules.unique({ table: 'posts', column: 'title' })]),
             content: schema.string({}, [rules.required()]),
         })
 
@@ -15,6 +15,8 @@ export default class PostsController {
             schema: validations,
             messages: {
                 required: 'Le champs {{ field }} est requis pour créer un post',
+                'title.maxLength': 'Le titre ne doit pas dépasser 50 caractères',
+                'title.unique': 'Ce titre est déjà utilisé',
                 'success': 'Votre post a été créé avec succès',
             }
         })
@@ -22,10 +24,7 @@ export default class PostsController {
 
         await Posts.create(data)
 
-        return {
-            status: 200,
-            message: 'Votre post a été créé avec succès',
-        }
+        return response.redirect('back')
     }
 
     public async get({ params, view }: HttpContextContract) {
