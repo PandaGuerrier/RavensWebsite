@@ -34,15 +34,16 @@ Route.group(() => {
     return view.render('admin/post')
   })
 
-  Route.post('post', 'Posts/PostsController.post').as('post')
+  Route.post('post', 'Posts/PostsController.create').as('post')
 
 }).middleware(['auth', 'admin']).prefix('/admin/')
 
 Route.group(() => {
   Route.get('edit', 'Posts/PostsController.edit').as('posts.edit')
-  Route.get('destroy', 'Posts/PostsController.edit').as('posts.destroy')
+  Route.get('destroy/:id', 'Posts/PostsController.destroy').as('posts.destroy')
+  Route.get('all', 'Posts/PostsController.index').as('posts.all')
 
-}).prefix('/user/posts/').middleware(['auth', 'post'])
+}).prefix('/user/posts/').middleware(['auth'])
 
 Route.get('/posts/:id', 'Posts/PostsController.get').as('posts')
 
