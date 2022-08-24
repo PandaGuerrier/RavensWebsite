@@ -10,6 +10,7 @@ export default class extends BaseSchema {
       table.string('content').notNullable()
       table.string('user_uuid').notNullable()
       table.boolean('published').notNullable().defaultTo(true)
+      table.string('type').notNullable()
 
       table.timestamp('created_at', { useTz: true })
       table.timestamp('updated_at', { useTz: true })

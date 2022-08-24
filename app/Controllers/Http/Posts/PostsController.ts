@@ -4,17 +4,22 @@ import { rules, schema } from '@ioc:Adonis/Core/Validator'
 import { UpdateValidator } from 'App/Validators/PostValidator'
 
 export default class PostsController {
-    public async index ({ response, view }: HttpContextContract) {
+    public async index ({ view }: HttpContextContract) {
         const posts = await Posts.query().orderBy('title', 'asc')
 
-        return view.render('')
+        return view.render('posts/index', {
+            posts: posts,
+        })
     }
 
     public async create ({ request, response, auth }: HttpContextContract) {
+        console.log(request)
+        // todo: Récuperer l'image
 
         const validations = await schema.create({
             title: schema.string({}, [rules.required(), rules.maxLength(50), rules.unique({ table: 'posts', column: 'title' })]),
             content: schema.string({}, [rules.required()]),
+            type: schema.string({}, [rules.required()])
         })
 
         const data = await request.validate({

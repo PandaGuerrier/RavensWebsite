@@ -41,11 +41,11 @@ Route.group(() => {
 Route.group(() => {
   Route.get('edit', 'Posts/PostsController.edit').as('posts.edit')
   Route.get('destroy/:id', 'Posts/PostsController.destroy').as('posts.destroy')
-  Route.get('all', 'Posts/PostsController.index').as('posts.all')
+  Route.get('all', 'Posts/PostsController.index').as('posts.index')
 
 }).prefix('/user/posts/').middleware(['auth'])
 
-Route.get('/posts/:id', 'Posts/PostsController.get').as('posts')
+Route.get('/post/:id', 'Posts/PostsController.get').as('posts')
 
 // check db connection
 Route.get('health', async ({ response }) => {
