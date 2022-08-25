@@ -2,7 +2,7 @@ import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Posts from 'App/Models/Post'
 import { rules, schema } from '@ioc:Adonis/Core/Validator'
 import { UpdateValidator } from 'App/Validators/PostValidator'
-import Application from '@ioc:Adonis/Core/Application'
+import { Attachment } from '@ioc:Adonis/Addons/AttachmentLite'
 
 export default class PostsController {
     public async index ({ view }: HttpContextContract) {
@@ -14,16 +14,14 @@ export default class PostsController {
     }
 
     public async create ({ request, response, auth }: HttpContextContract) {
-
+        const img = request.file('img')
+        console.log(img)
 
         const validations = await schema.create({
             title: schema.string({}, [rules.required(), rules.maxLength(50), rules.unique({ table: 'posts', column: 'title' })]),
             content: schema.string({}, [rules.required()]),
             type: schema.string({}, [rules.required()]),
-            img: schema.file({
-                size: '2mb',
-                extnames: ['jpg', 'gif', 'png'],
-              }),
+            img: schema.file.optional(),
         })
 
         const data = await request.validate({
@@ -32,19 +30,26 @@ export default class PostsController {
                 required: 'Le champs {{ field }} est requis pour créer un post',
                 'title.maxLength': 'Le titre ne doit pas dépasser 50 caractères',
                 'title.unique': 'Ce titre est déjà utilisé',
+                'content.required': 'Le contenu est requis pour créer un post',
+                'type.required': 'Le type est requis pour créer un post',
+                'img.file': 'Le fichier n\'est pas une image',
                 'success': 'Votre post a été créé avec succès',
             }
         })
 
-        await data.img.move(Application.tmpPath('uploads'))
 
+        console.log(data)
 
-        await Posts.create({
+        const post = await Posts.create({
             ...data,
-            userUUID: auth.user?.id
+            userUUID: auth.user?.id,
+            img: data.img
+            ? Attachment.fromFile(data.img)
+            : undefined,
         })
-
-        return response.redirect('back')
+        return response.send({
+            message: post,
+        })
     }
 
     public async get({ params, view }: HttpContextContract) {
