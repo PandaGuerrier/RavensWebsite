@@ -2,6 +2,7 @@ import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Posts from 'App/Models/Post'
 import { rules, schema } from '@ioc:Adonis/Core/Validator'
 import { UpdateValidator } from 'App/Validators/PostValidator'
+import Application from '@ioc:Adonis/Core/Application'
 
 export default class PostsController {
     public async index ({ view }: HttpContextContract) {
@@ -13,13 +14,16 @@ export default class PostsController {
     }
 
     public async create ({ request, response, auth }: HttpContextContract) {
-        console.log(request)
-        // todo: Récuperer l'image
+
 
         const validations = await schema.create({
             title: schema.string({}, [rules.required(), rules.maxLength(50), rules.unique({ table: 'posts', column: 'title' })]),
             content: schema.string({}, [rules.required()]),
-            type: schema.string({}, [rules.required()])
+            type: schema.string({}, [rules.required()]),
+            img: schema.file({
+                size: '2mb',
+                extnames: ['jpg', 'gif', 'png'],
+              }),
         })
 
         const data = await request.validate({
@@ -31,6 +35,9 @@ export default class PostsController {
                 'success': 'Votre post a été créé avec succès',
             }
         })
+
+        await data.img.move(Application.tmpPath('uploads'))
+
 
         await Posts.create({
             ...data,
