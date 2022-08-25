@@ -21,7 +21,7 @@ export default class Post extends BaseModel {
   @column()
   public type: string
 
-  @attachment({ preComputeUrl: true, folder: 'posts' })
+  @attachment({ preComputeUrl: true })
   public img: AttachmentContract
 
   @column.dateTime({ autoCreate: true })

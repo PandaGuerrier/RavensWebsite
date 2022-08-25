@@ -10,12 +10,11 @@ export default class PostsController {
 
         return view.render('posts/index', {
             posts: posts,
+            length: posts.length,
         })
     }
 
     public async create ({ request, response, auth }: HttpContextContract) {
-        const img = request.file('img')
-        console.log(img)
 
         const validations = await schema.create({
             title: schema.string({}, [rules.required(), rules.maxLength(50), rules.unique({ table: 'posts', column: 'title' })]),
@@ -36,9 +35,6 @@ export default class PostsController {
                 'success': 'Votre post a été créé avec succès',
             }
         })
-
-
-        console.log(data)
 
         const post = await Posts.create({
             ...data,
@@ -68,25 +64,17 @@ export default class PostsController {
             status: 400,
             message: "Post inconnu"
         })
+
         if (auth.isLoggedIn) {
-            if (auth.user?.id === post?.userUUID) {
+            if (auth.user?.id === post?.userUUID || auth.user?.role === 'admin') {
                 await post?.delete()
 
-                return response.send({
-                    status: 200,
-                    message: "Post détruit !"
-                })
+                return response.redirect('back')
             } else {
-                return response.send({
-                    status: 400,
-                    message: "UnAuthorized."
-                })
+                return response.redirect('back')
             }
         } else {
-            return response.send({
-                status: 400,
-                message: "UnAuthorized."
-            })
+            return response.redirect('back')
         }
     }
 

@@ -39,13 +39,16 @@ Route.group(() => {
 }).middleware(['auth', 'admin']).prefix('/admin/')
 
 Route.group(() => {
-  Route.get('edit', 'Posts/PostsController.edit').as('posts.edit')
-  Route.get('destroy/:id', 'Posts/PostsController.destroy').as('posts.destroy')
+  Route.group(() => {
+    Route.get('edit/:id', 'Posts/PostsController.edit').as('posts.edit')
+    Route.get('destroy/:id', 'Posts/PostsController.destroy').as('posts.destroy')
+  })
+
   Route.get('all', 'Posts/PostsController.index').as('posts.index')
+  Route.get(':id', 'Posts/PostsController.get').as('posts')
+}).prefix('/posts/')
 
-}).prefix('/user/posts/').middleware(['auth'])
 
-Route.get('/post/:id', 'Posts/PostsController.get').as('posts')
 
 // check db connection
 Route.get('health', async ({ response }) => {
