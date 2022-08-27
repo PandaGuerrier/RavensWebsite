@@ -38,7 +38,7 @@
          <input type="hidden" name="remember" value="true">
             <div class="rounded-md shadow-sm -space-y-px">       
               @if(flashMessages.has('notification'))
-              @!component('components.actionbar', {
+              @!component('components/actionbar', {
                  type: 'error',
                  text: flashMessages.get('notification'),
                })

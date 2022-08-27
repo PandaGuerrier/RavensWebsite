@@ -35,8 +35,7 @@
       "@adonisjs/lucid",
       "@adonisjs/auth",
       "@adonisjs/bouncer",
-      "@adonisjs/attachment-lite",
-      "@shagital/adonisjs-crud-generator"
+      "@adonisjs/attachment-lite"
     ]
   }
 }

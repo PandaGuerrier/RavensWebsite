@@ -23,7 +23,7 @@ import './routes/auth'
 
 Route.get('/', async ({ view }) => {
     return view.render('home')
-})
+}).as('home')
 
 Route.group(() => {
   Route.get('dashboard', async ({ view }) => {

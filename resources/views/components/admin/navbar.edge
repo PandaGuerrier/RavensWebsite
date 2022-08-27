@@ -1,0 +1,46 @@
+  
+  <!-- Static sidebar for desktop -->
+  <div class="flex flex-col w-72 fixed inset-y-0 border-r border-gray-200 pt-5 pb-4 bg-gray-100">
+    <div class="flex items-center flex-shrink-0 px-6 w-full">
+      <a href="{{ route('home') }}" class="flex flex-row items-center gap-4 px-16 w-ful">
+          <svg class="block h-8 w-auto" width="116" height="49" viewBox="0 0 116 49" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M33.4891 7.37753L50.6743 25.6562L73.3675 0L116 49L73.3675 13.3236V35.6707L56.623 28.8494L41.9164 41.182L50.6743 28.8494L33.4891 16.4067L26.7692 27.9685L24.566 26.5371L20.8205 35.4562L19.1681 27.9685L0 39.5303L14.1007 25.6562H20.2697L33.4891 7.37753Z" fill="#373D5B"/>
+            </svg>
+          </a>
+    </div>
+        
+        <!-- Sidebar component, swap this element with another sidebar if you like -->
+    <div class="mt-6 h-0 flex-1 flex flex-col overflow-y-auto border-t mx-4">
+      <!-- Navigation -->
+      <nav class="mt-6 px-5 bg-gray-100 space-y-1">
+        <a href="{{ route('dashboard') }}" class="group flex items-center px-2 py-2 text-sm font-medium rounded-md text-gray-900 bg-gray-200 hover:bg-gray-300 hover:text-gray-900">
+          <!-- Heroicon name: outline/home -->
+          <svg class="flex-shrink-0 -ml-1 mr-3 h-6 w-6 text-gray-500 group-hover:text-gray-500 group-focus:text-gray-600 transition ease-in-out duration-150" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M3 3a1 1 0 011-1h12a1 1 0 011 1v14a1 1 0 01-1 1H4a1 1 0 01-1-1V3zm2 0v14h12V3H5z" clip-rule="evenodd" />
+            <path fill-rule="evenodd" d="M7 7a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1H8a1 1 0 01-1-1V7zm1 0v4h4V7H8z" clip-rule="evenodd" />
+          </svg>
+          Dashboard
+        </a>
+    
+        <a href="{{ route('post') }}" class="group flex items-center px-2 py-2 text-sm font-medium rounded-md text-gray-900 hover:bg-gray-300 hover:text-gray-900">
+          <svg class="flex-shrink-0 -ml-1 mr-3 h-6 w-6 text-gray-500 group-hover:text-gray-500 group-focus:text-gray-600 transition ease-in-out duration-150" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M5 3a2 2 0 00-2 2v10">
+            </svg>
+          Posts
+        </a>
+      </nav>
+    </div>
+    <div class="border-t pt-4 border-slate-200 mx-4 relative">
+      <div class="flex flex-row items-center gap-4">
+        <a href="{{ route('home') }}">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+         </svg>      
+        </a>
+        <div class="flex flex-col text-left">
+          <span>{{ auth.user.username }}</span>
+          <span class="text-xs text-slate-500 font-light">{{ auth.user.email }}</span>
+        </div>
+      </div>
+    </div>
+  </div>

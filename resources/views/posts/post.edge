@@ -10,9 +10,19 @@
   <body>
     <main class="">
       @!component('components/navbar')
+      
       @can('post:view', post)
-
-      <div id="myModal" class="relative modal">
+      <div class="w-full h-full">
+        @!component('components/form/modal', {
+          title: 'Supprimer',
+          content: 'Vous êtes sur le point de supprimer ce post, cette action est irréversible !',
+          action: route('posts.destroy', [post.id]),
+          method: 'DELETE',
+          button: 'Supprimer',
+          buttonClass: 'bg-red-200 text-red-700'
+        })
+      </div>
+      <div id="myModal" class="hidden relative modal ">
         <div class="modal-content">
           <img id="img01" class="rounded-md">
           <div class="w-full">
@@ -24,9 +34,9 @@
         <div id="caption"></div>
       </div>
 
-      <div class="">
+      <div class="index-20">
         <div class="py-32 mx-auto max-w-7xl px-5 sm:px-6 lg:px-8 space-y-20">
-          <div class="grid grid-cols-1 lg:grid-cols-3 gap-10 ">
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
             <div class="col-span-1 mb-5">
               <div class="lg:sticky space-y-10 bg-white border border-gray-200 p-5 rounded-md shadow-lg divide-y divide-gray-200 delay-300 reveal">
                 <div class="">
@@ -52,9 +62,8 @@
                   @end
 
                   @can('post:delete', post)
-                    <a href="{{ route('posts.destroy', [post.id]) }}"  class="duration-200 mr-3 relative py-2 px-4 border border-transparent text-sm font-medium rounded-md text-gray-700 hover:bg-red-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-700">
-                      Supprimer
-                    </a>  
+                      <button class="duration-200 mr-3 relative py-2 px-4 border border-transparent text-sm font-medium rounded-md text-gray-700 hover:bg-red-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-700 sm:text-sm" onclick="modalHandler(true)">Supprimer</button>
+
                     @end
                   </div>
                 </div>  
@@ -74,6 +83,7 @@
           <div id="firstDiv">Nous sommes désolé, mais vous n'avez pas accès à ce post :'(</div>   
         </div>    
       @end
+
     </main>
   </body>
 </html>

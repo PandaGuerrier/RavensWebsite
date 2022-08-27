@@ -36,16 +36,15 @@ export default class PostsController {
             }
         })
 
-        const post = await Posts.create({
+       const post = await Posts.create({
             ...data,
             userUUID: auth.user?.id,
             img: data.img
             ? Attachment.fromFile(data.img)
             : undefined,
         })
-        return response.send({
-            message: post,
-        })
+        //redirect to the post
+        return response.redirect("/posts/" + post.id)
     }
 
     public async get({ params, view }: HttpContextContract) {
@@ -75,7 +74,7 @@ export default class PostsController {
                 return response.redirect('back')
             }
         } else {
-            return response.redirect('back')
+            return response.redirect('home')
         }
     }
 
