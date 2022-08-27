@@ -55,7 +55,7 @@
                     <a href="{{ route('posts.destroy', [post.id]) }}"  class="duration-200 mr-3 relative py-2 px-4 border border-transparent text-sm font-medium rounded-md text-gray-700 hover:bg-red-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-700">
                       Supprimer
                     </a>  
-                  @end
+                    @end
                   </div>
                 </div>  
               </div>
@@ -69,7 +69,7 @@
       </div>
       @end
       @cannot('post:view', post)
-        <div class="relative flex justify-items-center grid top-32 w-full reveal "> 
+        <div class="relative  justify-items-center grid top-32 w-full reveal "> 
           <h1 class="text-3xl">Pas autorisé !</h1>
           <div id="firstDiv">Nous sommes désolé, mais vous n'avez pas accès à ce post :'(</div>   
         </div>    
