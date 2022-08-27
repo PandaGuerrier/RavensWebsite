@@ -6,7 +6,7 @@ import { Attachment } from '@ioc:Adonis/Addons/AttachmentLite'
 
 export default class PostsController {
     public async index ({ view }: HttpContextContract) {
-        const posts = await Posts.query().where('published', true).orderBy('title', 'asc')
+        const posts = await Posts.query().where('published', true).orderBy('id', 'asc')
 
         return view.render('posts/index', {
             posts: posts,
@@ -51,6 +51,7 @@ export default class PostsController {
     public async get({ params, view }: HttpContextContract) {
         // get the id post
         const post = await Posts.find(params.id)
+        if(!post) return view.render('errors/404')
         // return the post
         return view.render('posts/post', {
             post: post,

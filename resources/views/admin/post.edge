@@ -42,8 +42,12 @@
                 <input id="title" name="title" type="text" required class="appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-slate-700 focus:border-slate-700 focus:z-10 sm:text-sm" placeholder="Titre">
               </div>
               <div>
-                <label for="type" class="sr-only">Type</label>
-                <input id="type" name="type" type="text" required class="appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-slate-700 focus:border-slate-700 focus:z-10 sm:text-sm" placeholder="Trailer, Logo, Bannière...">
+                <select name="type" id="type" class="appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-slate-700 focus:border-slate-700 focus:z-10 sm:text-sm">
+                  <option value="">Choisi une option</option>
+                  <option value="trailer">Trailer</option>
+                  <option value="logo">Logo</option>
+                  <option value="banniere">Bannière</option>
+              </select>
               </div>
               <div>
                 <label for="img" class="sr-only">Image</label>

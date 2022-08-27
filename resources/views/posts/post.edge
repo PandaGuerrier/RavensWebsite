@@ -27,14 +27,22 @@
       <div class="">
         <div class="py-32 mx-auto max-w-7xl px-5 sm:px-6 lg:px-8 space-y-20">
           <div class="grid grid-cols-1 lg:grid-cols-3 gap-10 ">
-            <div class="col-span-1">
-              <div class="lg:sticky top-32 space-y-10 bg-white border border-gray-200 p-5 rounded-md shadow-lg divide-y divide-gray-200 delay-300 reveal">
+            <div class="col-span-1 mb-5">
+              <div class="lg:sticky space-y-10 bg-white border border-gray-200 p-5 rounded-md shadow-lg divide-y divide-gray-200 delay-300 reveal">
                 <div class="">
-                  @if(post.img)
-                  <div class="py-2">
-                    <img id="myImg" src="{{ post.img.url }}" class="rounded-lg" alt="">
-                  </div>
-                  @end
+                  @if(post.type == 'trailer')
+                    <div class="py-2">
+                      <video controls class="rounded-lg">
+                        <source src="{{ post.img.url }}" type="video/mp4" onerror="alert('Could\'nt load video')">
+                      </video>
+                    </div>
+                  @else
+                    @if(post.img)
+                      <div class="py-2">
+                        <img id="myImg" src="{{ post.img.url }}" class="rounded-lg h-28" alt="">
+                      </div>
+                    @end
+                  @endif
                   <div class="py-2">
                       
                   @can('post:edit', post)

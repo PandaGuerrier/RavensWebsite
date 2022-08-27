@@ -1,0 +1,21 @@
+@!component('components/navbar')
+  <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RavenS</title>
+    @entryPointStyles('app')
+    @entryPointScripts('app')
+  </head>
+  <body>
+    <main class="">
+      @!component('components/navbar')
+
+        <div class="relative flex justify-items-center grid top-32 w-full reveal "> 
+          <h1 class="text-3xl">Post introuvable !</h1>
+          <div id="firstDiv">Nous sommes désolé, ce post est introuvable :(</div>   
+        </div>    
+    </main>
+  </body>
+</html>

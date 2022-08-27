@@ -550,6 +550,184 @@
           "description": "Actions to implement"
         }
       ]
+    },
+    "crud:controller": {
+      "settings": {
+        "loadApp": true,
+        "stayAlive": false
+      },
+      "commandPath": "@shagital/adonisjs-crud-generator/build/commands/ControllerGenerator",
+      "commandName": "crud:controller",
+      "description": "Generate controller and route for a table",
+      "args": [
+        {
+          "type": "string",
+          "propertyName": "table",
+          "name": "table",
+          "required": true,
+          "description": "Table to generate controller and routes for"
+        }
+      ],
+      "aliases": [],
+      "flags": [
+        {
+          "name": "connection",
+          "propertyName": "connection",
+          "type": "boolean",
+          "description": "Specify custom DB connection to use"
+        }
+      ]
+    },
+    "crud:generate": {
+      "settings": {
+        "loadApp": true,
+        "stayAlive": false
+      },
+      "commandPath": "@shagital/adonisjs-crud-generator/build/commands/CrudGenerator",
+      "commandName": "crud:generate",
+      "description": "Generate CRUD for a table",
+      "args": [
+        {
+          "type": "string",
+          "propertyName": "table",
+          "name": "table",
+          "required": true,
+          "description": "Table to generate CRUD for"
+        }
+      ],
+      "aliases": [],
+      "flags": [
+        {
+          "name": "migrate",
+          "propertyName": "migrate",
+          "type": "boolean",
+          "description": "Automatically run newly created migration"
+        },
+        {
+          "name": "connection",
+          "propertyName": "connection",
+          "type": "string",
+          "description": "Specify custom DB connection to use"
+        }
+      ]
+    },
+    "crud:init": {
+      "settings": {
+        "loadApp": true,
+        "stayAlive": false
+      },
+      "commandPath": "@shagital/adonisjs-crud-generator/build/commands/CrudInit",
+      "commandName": "crud:init",
+      "description": "Publish admin configs",
+      "args": [],
+      "aliases": [],
+      "flags": [
+        {
+          "name": "prefix",
+          "propertyName": "prefix",
+          "type": "string",
+          "description": "Define a custom admin route prefix"
+        },
+        {
+          "name": "migrate",
+          "propertyName": "migrate",
+          "type": "boolean",
+          "description": "Automatically run newly created migration"
+        },
+        {
+          "name": "force",
+          "propertyName": "force",
+          "type": "boolean",
+          "description": "Force run command in production"
+        }
+      ]
+    },
+    "crud:model": {
+      "settings": {
+        "loadApp": true,
+        "stayAlive": false
+      },
+      "commandPath": "@shagital/adonisjs-crud-generator/build/commands/ModelGenerator",
+      "commandName": "crud:model",
+      "description": "Generate model and relationships for a table",
+      "args": [
+        {
+          "type": "string",
+          "propertyName": "table",
+          "name": "table",
+          "required": true,
+          "description": "Table to generate model and relationships for"
+        }
+      ],
+      "aliases": [],
+      "flags": [
+        {
+          "name": "connection",
+          "propertyName": "connection",
+          "type": "boolean",
+          "description": "Specify custom DB connection to use"
+        }
+      ]
+    },
+    "crud:permission": {
+      "settings": {
+        "loadApp": true,
+        "stayAlive": false
+      },
+      "commandPath": "@shagital/adonisjs-crud-generator/build/commands/PermissionMigrationGenerator",
+      "commandName": "crud:permission",
+      "description": "Generate CRUD for a table",
+      "args": [
+        {
+          "type": "string",
+          "propertyName": "table",
+          "name": "table",
+          "required": true,
+          "description": "Table to generate model and relationships for"
+        }
+      ],
+      "aliases": [],
+      "flags": [
+        {
+          "name": "migrate",
+          "propertyName": "migrate",
+          "type": "boolean",
+          "description": "Run new migration"
+        },
+        {
+          "name": "connection",
+          "propertyName": "connection",
+          "type": "boolean",
+          "description": "Specify custom DB connection to use"
+        }
+      ]
+    },
+    "crud:view": {
+      "settings": {
+        "loadApp": true,
+        "stayAlive": false
+      },
+      "commandPath": "@shagital/adonisjs-crud-generator/build/commands/ViewGenerator",
+      "commandName": "crud:view",
+      "description": "Generate view templates for a table",
+      "args": [
+        {
+          "type": "string",
+          "propertyName": "table",
+          "name": "table",
+          "required": true,
+          "description": "Table to generate model and relationships for"
+        }
+      ],
+      "aliases": [],
+      "flags": [
+        {
+          "name": "connection",
+          "propertyName": "connection",
+          "type": "boolean",
+          "description": "Specify custom DB connection to use"
+        }
+      ]
     }
   },
   "aliases": {}

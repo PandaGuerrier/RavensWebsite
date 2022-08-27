@@ -23,7 +23,15 @@
                           <div class="flex justify-between">
                             <div class="space-y-3">
                               <h2 class="font-medium text-4xl lg:text-lg">{{ index + 1 }}. {{ post.title }}</h2>
+                              @if(post.type == 'trailer')
+                                <video class="rounded-lg">
+                                  <source id="myImg" src="{{ post.img.url }}" type="video/mp4">
+                                </video>
+                            @else
+                              @if(post.img)
                               <img class='item-center rounded-md' src={{ post.img.url }} alt={{ post.title }} class="w-full h-48 object-cover">
+                              @end
+                            @endif
                               <h2 class="font-medium text-4xl lg:text-lg">Type: {{ post.type }}</h2>
                             </div>          
                           </div>

@@ -30,6 +30,7 @@
     "@adonisjs/session": "^6.4.0",
     "@adonisjs/shield": "^7.1.0",
     "@adonisjs/view": "^6.1.6",
+    "@shagital/adonisjs-crud-generator": "^3.0.6",
     "@tailwindcss/forms": "^0.5.2",
     "autoprefixer": "^10.4.8",
     "axios": "^0.27.2",
