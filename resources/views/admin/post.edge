@@ -22,7 +22,7 @@
       @!component('components/form/modal', {
         title: 'Supprimer',
         content: 'Vous êtes sur le point de supprimer ce post, cette action est irréversible !',
-        action: route('posts.destroy', [post.id]),
+        action: "/posts/destroy/",
         method: 'DELETE',
         button: 'Supprimer',
         buttonClass: 'bg-red-200 text-red-700'
@@ -47,7 +47,38 @@
             @end
           </td>
           <td class="md:table-cell px-8 py-3 whitespace-nowrap text-sm text-gray-500 text-right">
-            <vue-dropdown animation="fade" id={{ "app" + post.id }}></vue-dropdown>
+            <div x-cloak x-data="{ dropdown: false, modal: false }" class="relative inline-block text-left">
+              <div>
+                <button @click="dropdown = !dropdown" type="button" class="bg-gray-100 rounded-md flex items-center text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-slate-500" id="menu-button" aria-expanded="true" aria-haspopup="true">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 13.5V3.75m0 9.75a1.5 1.5 0 010 3m0-3a1.5 1.5 0 000 3m0 3.75V16.5m12-3V3.75m0 9.75a1.5 1.5 0 010 3m0-3a1.5 1.5 0 000 3m0 3.75V16.5m-6-9V3.75m0 3.75a1.5 1.5 0 010 3m0-3a1.5 1.5 0 000 3m0 9.75V10.5" />
+                  </svg>
+                  
+                </button>
+              </div>
+          
+              <div x-show="dropdown" class="fixed z-[5] inset-0" @click="dropdown = false"></div>
+          
+              <div
+                x-show="dropdown"
+                x-transition:enter="transition ease-out duration-100"
+                x-transition:enter-start="transform opacity-0 scale-95"
+                x-transition:enter-end="transform opacity-100 scale-100"
+                x-transition:leave="transition ease-in duration-75"
+                x-transition:leave-start="transform opacity-100 scale-100"
+                x-transition:leave-end="transform opacity-0 scale-95"
+                class="origin-top-right absolute z-10 right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+                role="menu"
+                aria-orientation="vertical"
+                aria-labelledby="menu-button"
+                tabindex="-1"
+              >
+                <div class="" role="none">
+                  <a href={{ "post/edit/" + post.id }} class="w-full h-full px-4 py-2 flex items-center space-x-2 text-slate-500 hover:bg-gray-100">Modifier</a>
+                  <button class="w-full h-full px-4 py-2 flex items-center space-x-2 text-slate-500 hover:bg-red-100" onclick="modalHandler(true, {{ post.id }})">Supprimer</button>
+                </div>
+              </div>
+            </div>
           </td>
         </tr>
       @end

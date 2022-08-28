@@ -22,12 +22,14 @@
 
     <script>
         let modal = document.getElementById("modal");
+        let deleteId = 0
         function deleteButton() {
-            window.location.href = "{{ action }}";
+            window.location.href = "{{ action }}" + deleteId;
         }
 
-        function modalHandler(val) {
+        function modalHandler(val, id) {
             if (val) {
+                deleteId = id
                 fadeIn(modal);
             } else {
                 fadeOut(modal);

@@ -10,23 +10,24 @@
   <body>
     <main class="">
         @!component('components/navbar')
-        <div class="mt-32 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 max-w-7xl mx-auto mb-12 place-items-stretch">
+        <div class="mt-32 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 max-w-max mx-auto mb-12 place-items-stretch">
           @if(length == 0)
             <h1>Oh non, il n'y a aucun post :'(</h1>
           @endif
                 @each((post, index) in posts)
                 @if(post.published)
                 <a href={{ "/posts/" + post.id }} class="reveal delay-300 h-full">
-                    <div class="bg-white h-full border border-slate-200 hover:border-slate-400 transition duration-300 rounded-md">
-                      <div class="p-5 h-full flex flex-col justify-between">
+                    <div class="bg-white h-full  border border-slate-200 hover:border-slate-400 transition duration-300 rounded-md">
+                      <div class="p-4 h-full flex flex-col justify-between">
                         <div class="flex flex-col overflow-hidden gap-4">
                           <div class="flex justify-between">
                             <div class="space-y-3">
                               <h2 class="font-medium text-4xl lg:text-lg">{{ index + 1 }}. {{ post.title }}</h2>
                               @if(post.type == 'trailer')
-                                <video class="rounded-lg">
-                                  <source id="myImg" src="{{ post.img.url }}" type="video/mp4">
-                                </video>
+                              <div class="py-2 rounded-md w-full">
+                                <iframe src={{ post.url}} class="rounded-md">
+                                </iframe>
+                              </div>
                             @else
                               @if(post.img)
                               <img class='item-center rounded-md' src={{ post.img.url }} alt={{ post.title }} class="w-full h-48 object-cover">
