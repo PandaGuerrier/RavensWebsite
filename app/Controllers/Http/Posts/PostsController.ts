@@ -14,13 +14,23 @@ export default class PostsController {
         })
     }
 
+    public async admin ({ view }: HttpContextContract) {
+        const posts = await Posts.query().orderBy('id', 'asc')
+
+        return view.render('admin/post', {
+            posts: posts,
+            length: posts.length,
+        })
+    }
+
     public async create ({ request, response, auth }: HttpContextContract) {
 
         const validations = await schema.create({
             title: schema.string({}, [rules.required(), rules.maxLength(50), rules.unique({ table: 'posts', column: 'title' })]),
             content: schema.string({}, [rules.required()]),
-            type: schema.string({}, [rules.required()]),
+            type: schema.string.optional({}, []),
             img: schema.file.optional(),
+            url: schema.string.optional(),
         })
 
         const data = await request.validate({

@@ -30,9 +30,18 @@ Route.group(() => {
     return view.render('admin/dashboard')
   }).as('dashboard')
 
-  Route.get('post', async ({ view }) => {
-    return view.render('admin/post')
-  })
+  Route.get('post', 'Posts/PostsController.admin')
+
+
+  Route.group(() => {
+    Route.get('create', async ({ view }) => {
+      return view.render('admin/post/create')
+    }).as('post.create')
+
+    Route.get('trailer', async ({ view }) => {
+      return view.render('admin/post/trailer')
+    })
+  }).prefix('post/')
 
   Route.post('post', 'Posts/PostsController.create').as('post')
 

@@ -52,9 +52,9 @@
         @if(auth.isLoggedIn)
           <a href={{ route('logout') }} class="duration-200	text-gray-700 hover:bg-red-200 px-3 py-2 rounded-md text-sm font-medium">Déconnexion</a>
           @if(auth.user.role == "admin")
-                <a href={{ route('dashboard') }} id='profile-button' class="duration-200 bg-slate-700 hover:bg-slate-600 text-white px-3 py-2 rounded-md text-sm font-medium index-50 index-10">Dashboard</a>
+                <a href={{ route('dashboard') }} class="duration-200 bg-slate-700 hover:bg-slate-600 text-white px-3 py-2 rounded-md text-sm font-medium index-50 index-10">Dashboard</a>
               @else
-                <a id='profile-button' class="duration-200 bg-slate-700 hover:bg-slate-600 text-white px-3 py-2 rounded-md text-sm font-medium index-50 index-10">{{ auth.user.username }}</a>
+                <a class="duration-200 bg-slate-700 hover:bg-slate-600 text-white px-3 py-2 rounded-md text-sm font-medium index-50 index-10">{{ auth.user.username }}</a>
               @endif
 
           @else

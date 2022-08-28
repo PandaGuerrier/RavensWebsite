@@ -1,0 +1,108 @@
+
+ <vue-dropdown animation="fade" id="app"></vue-dropdown>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  
+  <script>
+  Vue.component('vue-dropdown', {
+    data: function() {
+      return{
+        show: false,
+      }
+    },
+    props: {
+      color: String,
+      animation: String
+    },
+    template: `
+      <div class="dropdown-wrapper">
+      <button v-on:click="show = !show" class="transition duration-300 px-9">
+           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-gray-600">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 13.5V3.75m0 9.75a1.5 1.5 0 010 3m0-3a1.5 1.5 0 000 3m0 3.75V16.5m12-3V3.75m0 9.75a1.5 1.5 0 010 3m0-3a1.5 1.5 0 000 3m0 3.75V16.5m-6-9V3.75m0 3.75a1.5 1.5 0 010 3m0-3a1.5 1.5 0 000 3m0 9.75V10.5" />
+          </svg>
+      </button>
+      <transition :name="animation">
+        <div :class="'bg-gray-100'" class="dropdown-menu text-black mt-1 rounded absolute z-10 shadow-lg" v-if="show">
+          <ul class="list-none overflow-hidden rounded">
+              <a href="" class="duration-200 flex py-2 px-4 text-sm font-medium text-gray-700 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-700 sm:text-sm">Modifier</a>
+              <button class="duration-200 flex py-2 px-4 text-sm font-medium text-gray-700 hover:bg-red-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-700 sm:text-sm" onclick="modalHandler(true)">Supprimer</button>
+          </ul>
+        </div>
+      </transition>
+    </div>
+    `
+  })
+  
+  const app = new Vue({
+    el: '#app',
+  });
+  </script>
+  
+  
+  
+  <style>
+  button{
+    cursor:pointer;
+    &:focus{
+      outline:none;
+    }
+  }
+  
+  /* Animations */
+  .fade-enter-active, .fade-leave-active {
+    transition: opacity .5s;
+  }
+  .fade-enter, .fade-leave-to {
+    opacity: 0;
+  }
+  
+  /* Slide-in-up animation*/
+  .slide-in-up-enter-active, .slide-in-up-leave-active {
+    transition: all .5s;
+    transform: translateY(0);
+  }
+  .slide-in-up-enter, .slide-in-up-leave-to {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  
+  /* Slide-in-right animation*/
+  .slide-in-right-enter-active, .slide-in-right-leave-active {
+    transition: all .5s;
+    transform: translateX(0);
+  }
+  .slide-in-right-enter, .slide-in-right-leave-to {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  
+  /* Slide-in-left animation*/
+  .slide-in-left-enter-active, .slide-in-left-leave-active {
+    transition: all .5s;
+    transform: translateX(0);
+  }
+  .slide-in-left-enter, .slide-in-left-leave-to {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  
+  /* Scale animation*/
+  .scale-enter-active, .scale-leave-active {
+    transition: all .5s;
+    transform: scale(1);
+  }
+  .scale-enter, .scale-leave-to {
+    opacity: 0;
+    transform: scale(0);
+  }
+  
+  /* Rotate animation*/
+  .rotate-enter-active, .rotate-leave-active {
+    transition: all .5s;
+    transform: scale(1) rotate(-360deg);
+  }
+  .rotate-enter, .rotate-leave-to {
+    opacity: 0;
+    transform: scale(0) rotate(360deg);
+  }
+  </style>
