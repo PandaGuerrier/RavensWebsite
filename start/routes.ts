@@ -45,7 +45,7 @@ Route.group(() => {
   }).prefix('post/')
 
   Route.group(() => {
-    Route.get('', 'Users/AuthController.admin')
+    Route.get('', 'Users/AuthController.admin').as('user')
   }).prefix('user/')
 
 
