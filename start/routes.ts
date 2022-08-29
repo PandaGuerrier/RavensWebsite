@@ -30,8 +30,6 @@ Route.group(() => {
     return view.render('admin/dashboard')
   }).as('dashboard')
 
-  Route.get('post', 'Posts/PostsController.admin')
-
 
   Route.group(() => {
     Route.get('create', async ({ view }) => {
@@ -41,9 +39,15 @@ Route.group(() => {
     Route.get('trailer', async ({ view }) => {
       return view.render('admin/post/trailer')
     })
+
+    Route.get('', 'Posts/PostsController.admin')
+    Route.post('', 'Posts/PostsController.create').as('post')
   }).prefix('post/')
 
-  Route.post('post', 'Posts/PostsController.create').as('post')
+  Route.group(() => {
+    Route.get('', 'Users/AuthController.admin')
+  }).prefix('user/')
+
 
 }).middleware(['auth', 'admin']).prefix('/admin/')
 
@@ -55,9 +59,14 @@ Route.group(() => {
 
   Route.get('all', 'Posts/PostsController.index').as('posts.index')
   Route.get(':id', 'Posts/PostsController.get').as('posts')
-}).prefix('/posts/')
+}).prefix('/posts/').middleware(['auth', 'admin'])
 
-
+Route.group(() => {
+  Route.group(() => {
+    Route.get('edit/:id', 'Users/AuthController.edit').as('users.edit')
+    Route.get('destroy/:id', 'Users/AuthController.destroy').as('users.destroy')
+  })
+}).prefix('/users/').middleware(['auth', 'admin'])
 
 // check db connection
 Route.get('health', async ({ response }) => {

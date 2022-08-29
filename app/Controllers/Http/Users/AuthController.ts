@@ -3,6 +3,28 @@ import User from 'App/Models/User'
 import { rules, schema } from '@ioc:Adonis/Core/Validator'
 
 export default class AuthController {
+  public async destroy({ params, response }: HttpContextContract) {
+    const user = await User.find(params.id)
+
+    if (!user) return response.send({
+      status: 400,
+      message: "Utilisateur inconnu"
+    })
+
+    await user?.delete()
+
+    return response.redirect('back')
+  }
+
+  public async admin({ view }: HttpContextContract) {
+    const users = await User.query().orderBy('id', 'asc')
+
+    return view.render('admin/user', {
+      users: users,
+      length: users.length,
+    })
+  }
+
   public async registerView({ view }: HttpContextContract) {
     return view.render('auth/register')
   }
@@ -28,7 +50,7 @@ export default class AuthController {
         'success': 'Votre compte a été créé avec succès',
       }
     })
-// creer un validator
+    // creer un validator
     const user = await User.create(data)
     await auth.login(user)
 
