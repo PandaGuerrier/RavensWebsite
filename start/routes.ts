@@ -38,7 +38,7 @@ Route.group(() => {
 
     Route.get('trailer', async ({ view }) => {
       return view.render('admin/post/trailer')
-    })
+    }).as("post.create.trailer")
 
     Route.get('', 'Posts/PostsController.admin')
     Route.post('', 'Posts/PostsController.create').as('post')
