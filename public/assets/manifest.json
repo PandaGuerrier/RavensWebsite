@@ -1,5 +1,5 @@
 {
-  "assets/app.css": "http://localhost:8080/assets/app.css",
-  "assets/app.js": "http://localhost:8080/assets/app.js",
-  "assets/fonts/BebasNeue-Regular.ttf": "http://localhost:8080/assets/fonts/BebasNeue-Regular.c501e16f.ttf"
+  "assets/app.css": "/assets/app.96149c9f.css",
+  "assets/app.js": "/assets/app.28f9b29e.js",
+  "assets/fonts/BebasNeue-Regular.ttf": "/assets/fonts/BebasNeue-Regular.c501e16f.ttf"
 }
