@@ -44,7 +44,7 @@ Route.group(() => {
     Route.post('', 'Posts/PostsController.create').as('post')
 
     Route.group(() => {
-      Route.get('', 'Posts/PostsController.modifyView').as("post.modify")
+      Route.get('', 'Posts/PostsController.modifyView').as("post.edit")
       Route.post('', 'Posts/PostsController.modify').as('modify')
     }).prefix('edit/:id')
 
@@ -52,6 +52,11 @@ Route.group(() => {
 
   Route.group(() => {
     Route.get('', 'Users/AuthController.admin').as('user')
+    Route.group(() => {
+     Route.get('', 'Users/AuthController.modifyView').as("user.edit")
+     Route.post('', 'Users/AuthController.modify').as('user.modify')
+    }).prefix('edit/:id')
+
   }).prefix('user/')
 
 
@@ -59,7 +64,6 @@ Route.group(() => {
 
 Route.group(() => {
   Route.group(() => {
-    Route.get('edit/:id', 'Posts/PostsController.edit').as('posts.edit')
     Route.get('destroy/:id', 'Posts/PostsController.destroy').as('posts.destroy')
   })
 

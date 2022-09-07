@@ -3,6 +3,36 @@ import User from 'App/Models/User'
 import { rules, schema } from '@ioc:Adonis/Core/Validator'
 
 export default class AuthController {
+
+  public async modify ({ request, response, params }: HttpContextContract) {
+    const user = await User.find(params.id)
+
+    const validations = await schema.create({
+      username: schema.string.optional({}, [rules.required(), rules.maxLength(50), rules.unique({ table: 'posts', column: 'title' })]),
+      role: schema.string.optional({}, [rules.required()]),
+      password: schema.string.optional({}, []),
+      email: schema.string.optional(),
+  })
+
+  const data = await request.validate({
+      schema: validations
+  })
+
+    await user?.merge(data).save()
+
+    return response.redirect('back')
+  }
+
+  public async modifyView({ params, view }: HttpContextContract) {
+      const user = await User.find(params.id)
+
+      if(!user) return view.render('errors/404')
+
+      return view.render('admin/user/modify', {
+        user: user,
+      })
+  }
+
   public async destroy({ params, response }: HttpContextContract) {
     const user = await User.find(params.id)
 

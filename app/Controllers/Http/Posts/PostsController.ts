@@ -23,38 +23,22 @@ export default class PostsController {
         })
     }
 
-    public async modify ({ request, response, auth }: HttpContextContract) {
+    public async modify ({ request, response, params }: HttpContextContract) {
+        // get the checkbox value
+        const checkbox = request.input('published')
+        if (checkbox === null) {
+            await Posts.query().where('id', params.id).update({ published: true })
+        } else {
+            await Posts.query().where('id', params.id).update({ published: false })
+        }
 
-        const validations = await schema.create({
-            title: schema.string.optional({}, [rules.required(), rules.maxLength(50), rules.unique({ table: 'posts', column: 'title' })]),
-            content: schema.string.optional({}, [rules.required()]),
-            type: schema.string.optional({}, []),
-            img: schema.file.optional(),
-            url: schema.string.optional(),
+        const post = await Posts.find(params.id)
+
+        post?.merge({
+            ...request.only(['title', 'content', 'type', 'img', 'url', 'published']),
         })
 
-        const data = await request.validate({
-            schema: validations,
-            messages: {
-                required: 'Le champs {{ field }} est requis pour créer un post',
-                'title.maxLength': 'Le titre ne doit pas dépasser 50 caractères',
-                'title.unique': 'Ce titre est déjà utilisé',
-                'content.required': 'Le contenu est requis pour créer un post',
-                'type.required': 'Le type est requis pour créer un post',
-                'img.file': 'Le fichier n\'est pas une image',
-                'success': 'Votre post a été créé avec succès',
-            }
-        })
-
-       const post = await Posts.create({
-            ...data,
-            userUUID: auth.user?.id,
-            img: data.img
-            ? Attachment.fromFile(data.img)
-            : undefined,
-        })
-        //redirect to the post
-        return response.redirect("/posts/" + post.id)
+        return response.redirect("/posts/" + post?.id)
     }
 
     public async modifyView({ params, view }: HttpContextContract) {
