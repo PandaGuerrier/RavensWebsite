@@ -42,6 +42,12 @@ Route.group(() => {
 
     Route.get('', 'Posts/PostsController.admin')
     Route.post('', 'Posts/PostsController.create').as('post')
+
+    Route.group(() => {
+      Route.get('', 'Posts/PostsController.modifyView').as("post.modify")
+      Route.post('', 'Posts/PostsController.modify').as('modify')
+    }).prefix('edit/:id')
+
   }).prefix('post/')
 
   Route.group(() => {
