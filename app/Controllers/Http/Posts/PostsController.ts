@@ -14,6 +14,20 @@ export default class PostsController {
         })
     }
 
+    public async home ({ view }: HttpContextContract) {
+        const trailers = await Posts.query().where('type', 'trailer').orderBy('id', 'asc')
+        const logos = await Posts.query().where('type', 'logo').orderBy('id', 'asc')
+        const bannieres = await Posts.query().where('type', 'banniere').orderBy('id', 'asc')
+
+        // get miniature via https://img.youtube.com/vi/1XXOpGu_gSM/0.jpg
+        
+        return view.render('home', {
+            trailers: trailers,
+            logos: logos,
+            bannieres: bannieres,
+        })
+    }
+
     public async admin ({ view }: HttpContextContract) {
         const posts = await Posts.query().orderBy('id', 'asc')
 

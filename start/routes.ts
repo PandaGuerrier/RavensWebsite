@@ -21,9 +21,8 @@ import HealthCheck from '@ioc:Adonis/Core/HealthCheck'
 import Route from '@ioc:Adonis/Core/Route'
 import './routes/auth'
 
-Route.get('/', async ({ view }) => {
-    return view.render('home')
-}).as('home')
+Route.get('', 'Posts/PostsController.home')
+.as('home')
 
 Route.get('/test', async ({ view }) => {
   return view.render('test')
