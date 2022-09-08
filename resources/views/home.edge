@@ -39,7 +39,7 @@
           Deuxième partie :
         -->
 
-        <div class="relative w-full h-96 bg-slate-700 text-white flex justify-center reveal">
+        <div class="relative w-full h-96 bg-slate-700 text-white flex justify-center">
           <div class="flex justify-center items-center w-2/3 h-full">
             <img src="https://cdn.discordapp.com/attachments/866048310056976385/1011271193212506162/unknown.png" alt="RavenS" class="h-1/2 mx-8">
             <h1 class="text-white-800 text-2xl text-center">Salut, je suis RavenS, un jeune de 19 ans passionné d’informatique, de graphisme et de montage.</h1>
@@ -50,95 +50,49 @@
         <!--
           Troisième partie :
         -->
-
-              <ul class="nav nav-tabs flex flex-col md:flex-row flex-wrap list-none border-b-0 pl-0 mb-4" id="tabs-tab"
-        role="tablist">
-        <li class="nav-item" role="presentation">
-          <a href="#tabs-home" class="
-            nav-link
-            block
-            font-medium
-            text-xs
-            leading-tight
-            uppercase
-            border-x-0 border-t-0 border-b-2 border-transparent
-            px-6
-            py-3
-            my-2
-            hover:border-transparent hover:bg-gray-100
-            focus:border-transparent
-            active
-          " id="tabs-home-tab" data-bs-toggle="pill" data-bs-target="#tabs-home" role="tab" aria-controls="tabs-home"
-            aria-selected="true">Home</a>
-        </li>
-        <li class="nav-item" role="presentation">
-          <a href="#tabs-profile" class="
-            nav-link
-            block
-            font-medium
-            text-xs
-            leading-tight
-            uppercase
-            border-x-0 border-t-0 border-b-2 border-transparent
-            px-6
-            py-3
-            my-2
-            hover:border-transparent hover:bg-gray-100
-            focus:border-transparent
-          " id="tabs-profile-tab" data-bs-toggle="pill" data-bs-target="#tabs-profile" role="tab"
-            aria-controls="tabs-profile" aria-selected="false">Profile</a>
-        </li>
-        <li class="nav-item" role="presentation">
-          <a href="#tabs-messages" class="
-            nav-link
-            block
-            font-medium
-            text-xs
-            leading-tight
-            uppercase
-            border-x-0 border-t-0 border-b-2 border-transparent
-            px-6
-            py-3
-            my-2
-            hover:border-transparent hover:bg-gray-100
-            focus:border-transparent
-          " id="tabs-messages-tab" data-bs-toggle="pill" data-bs-target="#tabs-messages" role="tab"
-            aria-controls="tabs-messages" aria-selected="false">Messages</a>
-        </li>
-        <li class="nav-item" role="presentation">
-          <a href="#tabs-contact" class="
-            nav-link
-            disabled
-            pointer-events-none
-            block
-            font-medium
-            text-xs
-            leading-tight
-            uppercase
-            border-x-0 border-t-0 border-b-2 border-transparent
-            px-6
-            py-3
-            my-2
-            hover:border-transparent hover:bg-gray-100
-            focus:border-transparent
-          " id="tabs-contact-tab" data-bs-toggle="pill" data-bs-target="#tabs-contact" role="tab"
-            aria-controls="tabs-contact" aria-selected="false">Contact</a>
-        </li>
-      </ul>
-      <div class="tab-content" id="tabs-tabContent">
-        <div class="tab-pane fade show active" id="tabs-home" role="tabpanel" aria-labelledby="tabs-home-tab">
-          Tab 1 content
-        </div>
-        <div class="tab-pane fade" id="tabs-profile" role="tabpanel" aria-labelledby="tabs-profile-tab">
-          Tab 2 content
-        </div>
-        <div class="tab-pane fade" id="tabs-messages" role="tabpanel" aria-labelledby="tabs-profile-tab">
-          Tab 3 content
-        </div>
-        <div class="tab-pane fade" id="tabs-contact" role="tabpanel" aria-labelledby="tabs-contact-tab">
-          Tab 4 content
+        <div class="flex justify-center mt-16 w-full border">
+          <div class="flex justify-start items-start border w-1/2 border-gray-200 rounded-t-md">
+            <div class="">
+              <button class="relative py-4 mx-5 bg-white" onclick="clickHandle(event, 'Trailers')">Trailers</button>
+              <button class="relative py-4 mx-5 bg-white" onclick="clickHandle(event, 'Logos')">Logos</button>
+              <button class="relative py-4 mx-5 bg-white" onclick="clickHandle(event, 'Bannières')">Bannières</button>
+            </div>
+         </div>
+         <div class="bg-slate-600">
+          <div id="Trailers" class="tabcontent">
+            dddd
+          </div>
+        
+          <div id="Logos" class="hidden tabcontent">
+            bbbb
+          </div>
+        
+          <div id="Bannières" class="hidden tabcontent">
+            ddd
         </div>
       </div>
+        </div>
+         <script>
+         function clickHandle(evt, animalName) {
+           let i, tabcontent, tablinks;
+         
+           // This is to clear the previous clicked content.
+           tabcontent = document.getElementsByClassName("tabcontent");
+           for (i = 0; i < tabcontent.length; i++) {
+             tabcontent[i].style.display = "none";
+           }
+         
+           // Set the tab to be "active".
+           tablinks = document.getElementsByClassName("tablinks");
+           for (i = 0; i < tablinks.length; i++) {
+             tablinks[i].className = tablinks[i].className.replace(" active", "");
+           }
+         
+           // Display the clicked tab and set it to active.
+           document.getElementById(animalName).style.display = "block";
+           evt.currentTarget.className += " active";
+         }
+         </script>
     </main>
   </body>
 </html>
