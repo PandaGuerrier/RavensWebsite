@@ -25,6 +25,10 @@ Route.get('/', async ({ view }) => {
     return view.render('home')
 }).as('home')
 
+Route.get('/test', async ({ view }) => {
+  return view.render('test')
+}).as('test')
+
 Route.group(() => {
   Route.get('dashboard', async ({ view }) => {
     return view.render('admin/dashboard')
