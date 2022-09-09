@@ -40,11 +40,11 @@
               <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
               <a href="/" class="duration-200	text-gray-700 hover:bg-zinc-200 px-3 py-2 rounded-md text-sm font-medium">Accueil</a>
   
-              <a href="#presentation" class="duration-200	text-gray-700 hover:bg-zinc-200 px-3 py-2 rounded-md text-sm font-medium">Présentation</a>
+              <a href="/#presentation" class="duration-200	text-gray-700 hover:bg-zinc-200 px-3 py-2 rounded-md text-sm font-medium">Présentation</a>
   
-              <a href="#achievements" class="duration-200	text-gray-700 hover:bg-zinc-200 px-3 py-2 rounded-md text-sm font-medium">Réalisation</a>
+              <a href="/#achievements" class="duration-200	text-gray-700 hover:bg-zinc-200 px-3 py-2 rounded-md text-sm font-medium">Réalisation</a>
 
-              <a href={{ route('posts.index') }} class="duration-200	text-gray-700 hover:bg-zinc-200 px-3 py-2 rounded-md text-sm font-medium">Posts</a>
+              <!--<a href={{ route('posts.index') }} class="duration-200	text-gray-700 hover:bg-zinc-200 px-3 py-2 rounded-md text-sm font-medium">Posts</a>-->
             </div>
           </div>
         </div>
@@ -72,11 +72,10 @@
         <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
         <a href="/" class="text-gray-700 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Accueil</a>
   
-        <a href="#presentation" class="text-gray-700 h  over:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Présentation</a>
+        <a href="/#presentation" class="text-gray-700 h  over:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Présentation</a>
   
-        <a href="#achievements" class="text-gray-700 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Réalisation</a>
+        <a href="/#achievements" class="text-gray-700 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Réalisation</a>
   
-        <a href="#prices" class="text-gray-700 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Tarifs</a>
         @if(auth.isLoggedIn)
         <a href={{ route('logout') }} class="text-gray-700 hover:bg-red-500 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Déconnexion</a>
           @if(auth.user.role == "admin")

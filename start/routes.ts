@@ -62,17 +62,18 @@ Route.group(() => {
 
   }).prefix('user/')
 
-
-}).middleware(['auth', 'admin']).prefix('/admin/')
-
-Route.group(() => {
   Route.group(() => {
     Route.get('destroy/:id', 'Posts/PostsController.destroy').as('posts.destroy')
   })
 
+}).middleware(['auth', 'admin']).prefix('/admin/')
+
+Route.group(() => {
+
+
   Route.get('all', 'Posts/PostsController.index').as('posts.index')
   Route.get(':id', 'Posts/PostsController.get').as('posts')
-}).prefix('/posts/').middleware(['auth', 'admin'])
+}).prefix('/posts/')
 
 Route.group(() => {
   Route.group(() => {

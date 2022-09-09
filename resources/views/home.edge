@@ -50,15 +50,20 @@
         <!--
           Troisième partie :
         -->
-        <div class="flex justify-center flex-col items-center mt-16 w-full">
-          <div class="flex justify-start items-start w-1/2 border border-gray-200 rounded-t-md">
-            <div>
-              <button class="relative py-4 w-52 bg-white tablinks border-r bg-gray-200" onclick="clickHandle(event, 'Trailers')">Trailers</button>
-              <button class="relative py-4 w-52 bg-white tablinks border-r" onclick="clickHandle(event, 'Logos')">Logos</button>
-              <button class="relative py-4 w-52 bg-white tablinks border-r" onclick="clickHandle(event, 'Bannières')">Bannières</button>
+
+        <div id="achievements" class="">
+           <div class="flex justify-center items-center mt-16 w-full">
+            <div class="w-1/2 border border-gray-200 rounded-t-md">
+                <button class="py-4 w-52 bg-white tablinks rounded-tl-md drop-shadow-xl" onclick="clickHandle(event, 'Trailers')">Trailers</button>
+                <button class="py-4 w-52 bg-white tablinks" onclick="clickHandle(event, 'Logos')">Logos</button>
+                <button class="py-4 w-52 bg-white tablinks" onclick="clickHandle(event, 'Bannières')">Bannières</button>
             </div>
-         </div>
-      </div>
+          </div>
+
+        <!--
+          Trailers :
+        -->
+
       <section id="Trailers" class="tabcontent max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 top-0 w-2/4 border border-gray-200 rounded-b-md border-t-white">
           <div class="grid grid-cols-1 md:grid-cols-2 py-12 lg:grid-cols-4 gap-5 max-w-full mx-auto mb-12 place-items-stretch bg-white w-full">
             @each((trailer, index) in trailers)
@@ -79,6 +84,10 @@
             @endeach
           </div>
       </section>
+
+        <!--
+          Logos :
+        -->
 
       <section id="Logos" class="hidden tabcontent max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 top-0 w-2/4 border border-gray-200 rounded-b-md border-t-white">
         <div class="grid grid-cols-1 md:grid-cols-2 py-12 lg:grid-cols-4 gap-5 max-w-full mx-auto mb-12 place-items-stretch bg-white w-full">
@@ -101,6 +110,10 @@
         </div>
     </section>
 
+        <!--
+          Bannières :
+        -->
+        
     <section id="Bannières" class="hidden tabcontent max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 top-0 w-2/4 border border-gray-200 rounded-b-md border-t-white">
       <div class="grid grid-cols-1 md:grid-cols-2 py-12 lg:grid-cols-4 gap-5 max-w-full mx-auto mb-12 place-items-stretch bg-white w-full">
         @each((banniere, index) in bannieres)
@@ -121,6 +134,7 @@
         @endeach
       </div>
   </section>
+</div>
          <script>
          function clickHandle(evt, animalName) {
            let i, tabcontent, tablinks;
@@ -135,13 +149,13 @@
            tablinks = document.getElementsByClassName("tablinks");
            for (i = 0; i < tablinks.length; i++) {
              tablinks[i].className = tablinks[i].className.replace(" active", "");
-             tablinks[i].className = tablinks[i].className.replace(" bg-gray-200", "");
+             tablinks[i].className = tablinks[i].className.replace(" drop-shadow-xl", "");
 
            }
          
            // Display the clicked tab and set it to active.
            document.getElementById(animalName).style.display = "block";
-           evt.currentTarget.className += " active bg-gray-200";
+           evt.currentTarget.className += " active drop-shadow-xl";
          }
          </script>
     </main>
