@@ -4,11 +4,11 @@ services:
     container_name: postgres-db-new
     image: 'postgres:latest'
     ports:
-      - '5434:5432'
+      - '000:5432'
     environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=postgres
+      - POSTGRES_USER=
+      - POSTGRES_PASSWORD=
+      - POSTGRES_DB=
     volumes:
       - postgres-db-data:/var/lib/postgresql/data
 
