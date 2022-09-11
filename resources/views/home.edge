@@ -8,8 +8,8 @@
     @entryPointStyles('app')
     @entryPointScripts('app')
   </head>
-  <body>
-    <main class="h-[200vh]">
+  <body class="">
+    <main class="overflow-hidden">
       @!component('components/navbar')
 
       <!--
@@ -40,10 +40,10 @@
         -->
 
         <div class="relative w-full h-96 bg-slate-700 text-white flex justify-center">
-          <div class="flex justify-center items-center w-2/3 h-full">
-            <img src="https://cdn.discordapp.com/attachments/866048310056976385/1011271193212506162/unknown.png" alt="RavenS" class="h-1/2 mx-8">
-            <h1 class="text-white-800 text-2xl text-center">Salut, je suis RavenS, un jeune de 19 ans passionné d’informatique, de graphisme et de montage.</h1>
-            <img src="https://cdn.discordapp.com/attachments/866048310056976385/1010630005623115878/unknown.png" alt="RavenS" class="h-1/5 mx-8 mb-6"> 
+          <div class="flex justify-center items-center w-2/3 h-full reveal">
+            <img src="https://cdn.discordapp.com/attachments/866048310056976385/1011271193212506162/unknown.png" alt="RavenS" class="h-32 mx-2 md:mx-8 md:h-1/2">
+            <h1 class="text-white-800 text-sm md:text-2xl text-center">Salut, je suis RavenS, un jeune de 19 ans passionné d’informatique, de graphisme et de montage.</h1>
+            <img src="https://cdn.discordapp.com/attachments/866048310056976385/1010630005623115878/unknown.png" alt="RavenS" class="h-8 md:h-1/5 mx-8 mb-6"> 
          </div>            
         </div>
 
@@ -51,115 +51,115 @@
           Troisième partie :
         -->
 
-        <div id="achievements" class="">
-           <div class="flex justify-center items-center mt-16 w-full">
-            <div class="w-1/2 border border-gray-200 rounded-t-md">
-                <button class="py-4 w-52 bg-white tablinks rounded-tl-md drop-shadow-xl" onclick="clickHandle(event, 'Trailers')">Trailers</button>
-                <button class="py-4 w-52 bg-white tablinks" onclick="clickHandle(event, 'Logos')">Logos</button>
-                <button class="py-4 w-52 bg-white tablinks" onclick="clickHandle(event, 'Bannières')">Bannières</button>
-            </div>
-          </div>
-
-        <!--
-          Trailers :
-        -->
-
-      <section id="Trailers" class="tabcontent max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 top-0 w-2/4 border border-gray-200 rounded-b-md border-t-white">
-          <div class="grid grid-cols-1 md:grid-cols-2 py-12 lg:grid-cols-4 gap-5 max-w-full mx-auto mb-12 place-items-stretch bg-white w-full">
-            @each((trailer, index) in trailers)
-            <a href={{ "/posts/" + trailer.id }} class="delay-300">
-              <div class="delay-300 h-full">
-              <div class="bg-white h-full border border-gray-200 hover:border-slate-400 transition duration-300 rounded-md">
-                <div class="p-5 h-full flex flex-col justify-between">
-                  <div class="flex flex-col overflow-hidden gap-4">
-                    <p class="lg:text-sm">{{ trailer.title }}</p>
-                    <div class="relative">
-                      <iframe class="max-h-48 max-w-48 object-cover rounded-md" src="{{ trailer.url }}" alt=""></iframe>
-                    </div>
-                  </div>
-                </div>
+        <div id="achievements" class="reveal">
+          <div class="flex justify-center items-center mt-16 w-full">
+           <div class="w-1/2 border border-gray-200 rounded-t-md">
+               <button class="py-4 w-52 bg-white tablinks rounded-tl-md drop-shadow-xl" onclick="clickHandle(event, 'Trailers')">Trailers</button>
+               <button class="py-4 w-52 bg-white tablinks" onclick="clickHandle(event, 'Logos')">Logos</button>
+               <button class="py-4 w-52 bg-white tablinks" onclick="clickHandle(event, 'Bannières')">Bannières</button>
+           </div>
+         </div>
+      
+       <!--
+         Trailers :
+       -->
+      
+          <section id="Trailers" class="tabcontent max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 top-0 w-2/4 border border-gray-200 rounded-b-md border-t-white">
+              <div class="grid grid-cols-1 md:grid-cols-2 py-12 lg:grid-cols-4 gap-5 max-w-full mx-auto mb-12 place-items-stretch bg-white w-full">
+                  @each((trailer, index) in trailers)
+                      <a href={{ "/posts/" + trailer.id }} class="delay-300">
+                          <div class="delay-300 h-full">
+                              <div class="bg-white h-full border border-gray-200 hover:border-slate-400 transition duration-300 rounded-md">
+                                      <div class="p-5 h-full flex flex-col justify-between">
+                                          <div class="flex flex-col overflow-hidden gap-4">
+                                              <p class="lg:text-sm">{{ trailer.title }}</p>
+                                              <div class="relative">
+                                              <iframe class="max-h-48 max-w-48 object-cover rounded-md" src="{{ trailer.url }}" alt=""></iframe>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </a>
+                 @endeach
               </div>
-            </div>
-          </a>
-            @endeach
-          </div>
-      </section>
-
-        <!--
+          </section>
+      
+          <!--
           Logos :
-        -->
-
-      <section id="Logos" class="hidden tabcontent max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 top-0 w-2/4 border border-gray-200 rounded-b-md border-t-white">
-        <div class="grid grid-cols-1 md:grid-cols-2 py-12 lg:grid-cols-4 gap-5 max-w-full mx-auto mb-12 place-items-stretch bg-white w-full">
+          -->
+      
+          <section id="Logos" class="hidden tabcontent max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 top-0 w-2/4 border border-gray-200 rounded-b-md border-t-white">
+          <div class="grid grid-cols-1 md:grid-cols-2 py-12 lg:grid-cols-4 gap-5 max-w-full mx-auto mb-12 place-items-stretch bg-white w-full">
           @each((logo, index) in logos)
           <a href={{ "/posts/" + logo.id }} class="delay-300">
-            <div class="delay-300 h-full">
-            <div class="bg-white h-full border border-gray-200 hover:border-slate-400 transition duration-300 rounded-md">
+              <div class="delay-300 h-full">
+              <div class="bg-white h-full border border-gray-200 hover:border-slate-400 transition duration-300 rounded-md">
               <div class="p-5 h-full flex flex-col justify-between">
-                <div class="flex flex-col overflow-hidden gap-4">
+                  <div class="flex flex-col overflow-hidden gap-4">
                   <p class="lg:text-sm">{{ logo.title }}</p>
                   <div class="relative">
-                    <img class="max-h-48 max-w-48 object-cover rounded-md" src="{{ logo.img.url }}" alt="">
+                      <img class="max-h-48 max-w-48 object-cover rounded-md" src="{{ logo.img.url }}" alt="">
                   </div>
-                </div>
+                  </div>
               </div>
-            </div>
+              </div>
           </div>
-        </a>
+          </a>
           @endeach
-        </div>
-    </section>
-
-        <!--
+          </div>
+          </section>
+      
+          <!--
           Bannières :
-        -->
-        
-    <section id="Bannières" class="hidden tabcontent max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 top-0 w-2/4 border border-gray-200 rounded-b-md border-t-white">
-      <div class="grid grid-cols-1 md:grid-cols-2 py-12 lg:grid-cols-4 gap-5 max-w-full mx-auto mb-12 place-items-stretch bg-white w-full">
-        @each((banniere, index) in bannieres)
-        <a href={{ "/posts/" + banniere.id }} class="delay-300">
+          -->
+          
+          <section id="Bannières" class="hidden tabcontent max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 top-0 w-2/4 border border-gray-200 rounded-b-md border-t-white">
+          <div class="grid grid-cols-1 md:grid-cols-2 py-12 lg:grid-cols-4 gap-5 max-w-full mx-auto mb-12 place-items-stretch bg-white w-full">
+          @each((banniere, index) in bannieres)
+          <a href={{ "/posts/" + banniere.id }} class="delay-300">
           <div class="delay-300 h-full">
           <div class="bg-white h-full border border-gray-200 hover:border-slate-400 transition duration-300 rounded-md">
-            <div class="p-5 h-full flex flex-col justify-between">
+              <div class="p-5 h-full flex flex-col justify-between">
               <div class="flex flex-col overflow-hidden gap-4">
-                <p class="lg:text-sm">{{ banniere.title }}</p>
-                <div class="relative">
+                  <p class="lg:text-sm">{{ banniere.title }}</p>
+                  <div class="relative">
                   <img class="max-h-48 max-w-48 object-cover rounded-md" src="{{ banniere.img.url }}" alt="">
-                </div>
+                  </div>
               </div>
-            </div>
+              </div>
           </div>
-        </div>
-      </a>
-        @endeach
+          </div>
+          </a>
+          @endeach
+          </div>
+          </section>
       </div>
-  </section>
-  @!component('components/footer')
+      @!component('components/footer')
 
-</div>
-         <script>
-         function clickHandle(evt, animalName) {
-           let i, tabcontent, tablinks;
-         
-           // This is to clear the previous clicked content.
-           tabcontent = document.getElementsByClassName("tabcontent");
-           for (i = 0; i < tabcontent.length; i++) {
-             tabcontent[i].style.display = "none";
-           }
-         
-           // Set the tab to be "active".
-           tablinks = document.getElementsByClassName("tablinks");
-           for (i = 0; i < tablinks.length; i++) {
-             tablinks[i].className = tablinks[i].className.replace(" active", "");
-             tablinks[i].className = tablinks[i].className.replace(" drop-shadow-xl", "");
-
-           }
-         
-           // Display the clicked tab and set it to active.
-           document.getElementById(animalName).style.display = "block";
-           evt.currentTarget.className += " active drop-shadow-xl";
-         }
-         </script>
     </main>
   </body>
+  <script>
+    function clickHandle(evt, animalName) {
+      let i, tabcontent, tablinks;
+    
+      // This is to clear the previous clicked content.
+      tabcontent = document.getElementsByClassName("tabcontent");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+    
+      // Set the tab to be "active".
+      tablinks = document.getElementsByClassName("tablinks");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+        tablinks[i].className = tablinks[i].className.replace(" drop-shadow-xl", "");
+
+      }
+    
+      // Display the clicked tab and set it to active.
+      document.getElementById(animalName).style.display = "block";
+      evt.currentTarget.className += " active drop-shadow-xl";
+    }
+    </script>
 </html>
