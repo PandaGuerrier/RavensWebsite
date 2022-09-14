@@ -82,7 +82,9 @@ export default class AuthController {
     })
     // creer un validator
     const user = await User.create(data)
-    await auth.login(user)
+    await auth.login(user, {
+      expiresIn: "100 days",
+    })
 
     return response.redirect('back')
   }
