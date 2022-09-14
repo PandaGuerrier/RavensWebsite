@@ -67,6 +67,7 @@
           <section id="Trailers" class="tabcontent max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 top-0 w-2/4 border border-gray-200 rounded-b-md border-t-white">
               <div class="grid grid-cols-1 md:grid-cols-2 py-12 lg:grid-cols-4 gap-5 max-w-full mx-auto mb-12 place-items-stretch bg-white w-full">
                   @each((trailer, index) in trailers)
+                   @if(trailer.published)
                       <a href={{ "/posts/" + trailer.id }} class="delay-300">
                           <div class="delay-300 h-full">
                               <div class="bg-white h-full border border-gray-200 hover:border-slate-400 transition duration-300 rounded-md">
@@ -81,6 +82,7 @@
                               </div>
                           </div>
                       </a>
+                   @endif
                  @endeach
               </div>
           </section>
@@ -92,22 +94,25 @@
           <section id="Logos" class="hidden tabcontent max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 top-0 w-2/4 border border-gray-200 rounded-b-md border-t-white">
           <div class="grid grid-cols-1 md:grid-cols-2 py-12 lg:grid-cols-4 gap-5 max-w-full mx-auto mb-12 place-items-stretch bg-white w-full">
           @each((logo, index) in logos)
-          <a href={{ "/posts/" + logo.id }} class="delay-300">
-              <div class="delay-300 h-full">
-              <div class="bg-white h-full border border-gray-200 hover:border-slate-400 transition duration-300 rounded-md">
-              <div class="p-5 h-full flex flex-col justify-between">
-                  <div class="flex flex-col overflow-hidden gap-4">
-                  <p class="lg:text-sm">{{ logo.title }}</p>
-                  <div class="relative">
-                      <img class="max-h-48 max-w-48 object-cover rounded-md" src="{{ logo.img.url }}" alt="">
+          @if(logo.published)
+
+              <a href={{ "/posts/" + logo.id }} class="delay-300">
+                  <div class="delay-300 h-full">
+                  <div class="bg-white h-full border border-gray-200 hover:border-slate-400 transition duration-300 rounded-md">
+                  <div class="p-5 h-full flex flex-col justify-between">
+                      <div class="flex flex-col overflow-hidden gap-4">
+                      <p class="lg:text-sm">{{ logo.title }}</p>
+                      <div class="relative">
+                          <img class="max-h-48 max-w-48 object-cover rounded-md" src="{{ logo.img.url }}" alt="">
+                      </div>
+                      </div>
                   </div>
                   </div>
               </div>
-              </div>
-          </div>
-          </a>
-          @endeach
-          </div>
+              </a>
+              @endif
+            @endeach
+            </div>
           </section>
       
           <!--
@@ -117,6 +122,8 @@
           <section id="Bannières" class="hidden tabcontent max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 top-0 w-2/4 border border-gray-200 rounded-b-md border-t-white">
           <div class="grid grid-cols-1 md:grid-cols-2 py-12 lg:grid-cols-4 gap-5 max-w-full mx-auto mb-12 place-items-stretch bg-white w-full">
           @each((banniere, index) in bannieres)
+          @if(banniere.published)
+
           <a href={{ "/posts/" + banniere.id }} class="delay-300">
           <div class="delay-300 h-full">
           <div class="bg-white h-full border border-gray-200 hover:border-slate-400 transition duration-300 rounded-md">
@@ -131,6 +138,7 @@
           </div>
           </div>
           </a>
+          @endif
           @endeach
           </div>
           </section>
